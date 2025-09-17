@@ -36,10 +36,10 @@ namespace Printer
 	std::string ToUpper(std::string str);
 	std::string ToLower(std::string str);
 
-	void Header(std::ostringstream& stream, const std::string& fileName, const std::string& fileExtension, bool bPragmaPush);
-	void Header(std::ofstream& stream, const std::string& fileName, const std::string& fileExtension, bool bPragmaPush);
+	void Header(std::ostringstream& stream, const std::string& fileName, const std::string& fileExtension);
+	void Header(std::ofstream& stream, const std::string& fileName, const std::string& fileExtension);
 	void Section(std::ostringstream& stream, const std::string& sectionName);
 	void Section(std::ofstream& stream, const std::string& sectionName);
-	void Footer(std::ostringstream& stream, bool bPragmaPop);
-	void Footer(std::ofstream& stream, bool bPragmaPop);
+	void Footer(std::ostringstream& stream);
+	void Footer(std::ofstream& stream);
 }

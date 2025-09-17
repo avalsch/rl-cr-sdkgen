@@ -62,10 +62,10 @@ bool GConfig::m_useWindows = true;
 bool GConfig::m_useConstants = true;
 
 // If you want to remove the "iNative" index on functions before calling process event.
-bool GConfig::m_removeNativeIndex = true;
+bool GConfig::m_removeNativeIndex = false;
 
 // If you want to remove the "FUNC_Native" flag on functions before calling process event.
-bool GConfig::m_removeNativeFlags = true;
+bool GConfig::m_removeNativeFlags = false;
 
 // If you want the EFunctionFlags, EPropertyFlags, and EObjectFlags enums so be printed in the final sdk.
 bool GConfig::m_printEnumFlags = true;
@@ -77,18 +77,16 @@ bool GConfig::m_useEnumClasses = true;
 std::string GConfig::m_enumClassType = "uint8_t";
 
 // Used to calculate property sizes and missed offsets.
-uint32_t GConfig::m_gameAlignment = 0x4;
+uint32_t GConfig::m_gameAlignment = 0x8;
 
 // Forced alignment used in the final sdk.
-uint32_t GConfig::m_finalAlignment = 0x4;
+uint32_t GConfig::m_finalAlignment = 0x8;
 
 // Names of classes or structs you don't want generated in the final sdk.
-std::vector<std::string> GConfig::m_blacklistedTypes = { "FPointer", "FQWord", "FScriptDelegate" };
+std::vector<std::string> GConfig::m_blacklistedTypes = { };
 
 // Names of classes or structs you want to override with your own custom one.
-std::map<std::string, std::string> GConfig::m_typeOverrides = {
-    { "FExampleStruct", PiecesOfTypes::Example_Struct }
-};
+std::map<std::string, std::string> GConfig::m_typeOverrides = {};
 
 bool GConfig::UsingWindows()
 {
@@ -172,10 +170,10 @@ std::string GConfig::GetTypeOverride(const std::string& name)
 */
 
 // If you want to use "m_peIndex" change this to true, if not virutal voids will be generated from "m_peMask" and "m_pePattern".
-bool GConfig::m_useIndex = false;
+bool GConfig::m_useIndex = true;
 
 // Position where the process event function is in UObject's VfTable.
-int32_t GConfig::m_peIndex = -1;
+int32_t GConfig::m_peIndex = 67;
 
 // Half byte mask, use question marks for unknown data.
 std::string GConfig::m_peMask = "xxx???x";
@@ -215,9 +213,9 @@ const std::string& GConfig::GetProcessEventStr()
 */
 
 // If want to use offsets or patterns to initialize global objects and names.
-bool GConfig::m_useOffsets = false;
+bool GConfig::m_useOffsets = true;
+uintptr_t GConfig::m_gobjectOffset = GConfig::m_gnameOffset + 0x48;
 
-uintptr_t GConfig::m_gobjectOffset = 0x0;
 
 // Half byte mask, use question marks for unknown data.
 std::string GConfig::m_gobjectMask = "xxx???x";
@@ -225,7 +223,7 @@ std::string GConfig::m_gobjectMask = "xxx???x";
 // First value is the actual hex escaped pattern, second value is the string version of it printed in the final sdk.
 std::pair<uint8_t*, std::string> GConfig::m_gobjectPattern = { (uint8_t*)"\x10\x11\x12\x00\x00\x00\x13", "\\x10\\x11\\x12\\x00\\x00\\x00\\x13" };
 
-uintptr_t GConfig::m_gnameOffset = 0x0;
+uintptr_t GConfig::m_gnameOffset = 0x2442D80;
 
 // Half byte mask, use question marks for unknown data.
 std::string GConfig::m_gnameMask = "xxx???x";
@@ -285,16 +283,16 @@ const std::string& GConfig::GetGNameMask()
 */
 
 // Mainly just used for the printed headers at the top of each generated file.
-std::string GConfig::m_gameNameLong = "Template Game";
+std::string GConfig::m_gameNameLong = "Rocket League";
 
 // This is used for the output folder name, along with the printed headers at the top of each file.
-std::string GConfig::m_gameNameShort = "TSDK";
+std::string GConfig::m_gameNameShort = "RLSDK";
 
 // Optional, mainly for your own sake, like comparing sdks you generate or release to people.
-std::string GConfig::m_gameVersion = "1.0.0.0";
+std::string GConfig::m_gameVersion = "2.56";
 
 // Directory folder that your want your sdk to be generated in.
-std::filesystem::path GConfig::m_outputPath = "I_FORGOT_TO_SET_A_PATH";
+std::filesystem::path GConfig::m_outputPath = "D:/rlsdk";
 
 const std::string& GConfig::GetGameNameLong()
 {

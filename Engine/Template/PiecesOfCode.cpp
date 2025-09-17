@@ -261,7 +261,7 @@ namespace PiecesOfCode
 		"\tint32_t NumFreeIndices;\t\t\t\t\t\t\t\t\t\t\t// 0x0034 (0x0004)\n"
 		"\tint64_t InlineHash;\t\t\t\t\t\t\t\t\t\t\t\t// 0x0038 (0x0008)\n"
 		"\tint32_t* Hash;\t\t\t\t\t\t\t\t\t\t\t\t\t// 0x0040 (0x0008)\n"
-		"\tint32_t HashCount;\t\t\t\t\t\t\t\t\t\t\t\t// 0x0048 (0x0004)"
+		"\tint32_t HashSize;\t\t\t\t\t\t\t\t\t\t\t\t// 0x0048 (0x0004)"
 		"\n"
 		"public:\n"
 		"\tTMap() :\n"
@@ -326,7 +326,7 @@ namespace PiecesOfCode
 		"\t\tNumFreeIndices = other.NumFreeIndices;\n"
 		"\t\tInlineHash = other.InlineHash;\n"
 		"\t\tHash = other.Hash;\n"
-		"\t\tHashCount = other.HashCount;\n"
+		"\t\tHashCount = other.HashSize;\n"
 		"\t\treturn *this;\n"
 		"\t}\n"
 		"\n"
@@ -925,14 +925,15 @@ namespace PiecesOfCode
 	const std::string FScriptDelegate_Struct =
 		"struct FScriptDelegate\n"
 		"{\n"
-		"\tclass UObject* Object; // 0x0000 (0x04)\n"
-		"\tclass FName FunctionName; // 0x0000 (0x08)\n"
+		"\tclass UObject* Object; // 0x0000 (0x08)\n"
+		"\tclass FName FunctionName; // 0x0008 (0x08)\n"
+		"\tuint64_t _; // 0x0010 (0x08)\n"
 		"};\n";
 
 	const std::string FPointer_Struct =
 		"struct FPointer\n"
 		"{\n"
-		"\tuintptr_t Dummy; // 0x0000 (0x04)\n"
+		"\tuintptr_t Dummy; // 0x0000 (0x08)\n"
 		"};\n";
 
 	const std::string FQWord_Struct =
@@ -1424,14 +1425,7 @@ namespace PiecesOfCode
 
 namespace PiecesOfTypes
 {
-	const std::string Example_Struct =
-		"struct FExampleStruct\n"
-		"{\n"
-		"\tstruct FQuat Quaternion;\n"
-		"\tstruct FVector Location;\n"
-		"\tstruct FVector LinearVelocity;\n"
-		"\tstruct FVector AngularVelocity;\n"
-		"};\n\n";
+
 }
 
 /*

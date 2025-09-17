@@ -104,7 +104,7 @@ std::string Member::GetLabel(EMemberTypes type)
 	case EMemberTypes::UStruct_Children:
 		return "class UField* Children;";
 	case EMemberTypes::UStruct_Size:
-		return "int32_t PropertySize;";
+		return "int32_t PropertiesSize;";
 	case EMemberTypes::UStruct_Alignment:
 		return "int32_t MinAlignment;";
 	case EMemberTypes::UFunction_Flags:
@@ -181,7 +181,7 @@ uintptr_t Member::GetOffset(EMemberTypes type)
 	case EMemberTypes::UStruct_Children:
 		return offsetof(UStruct, Children);
 	case EMemberTypes::UStruct_Size:
-		return offsetof(UStruct, PropertySize);
+		return offsetof(UStruct, PropertiesSize);
 	case EMemberTypes::UStruct_Alignment:
 		return offsetof(UStruct, MinAlignment);
 	case EMemberTypes::UFunction_Flags:

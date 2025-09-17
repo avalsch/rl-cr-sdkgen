@@ -1290,7 +1290,7 @@ public:
 	class UTextBuffer* CppText;				// 0x0040 (0x04)
 	class UField* SuperField;				REGISTER_MEMBER(class UField*, SuperField, EMemberTypes::UStruct_SuperField)		// 0x0044 (0x04) [SUPERFIELD CAN EITHER BE HERE, OR IN UFIELD DPENDING ON THE GAME. COMMENT OUT ACCORDINGLY!]
 	class UField* Children;					REGISTER_MEMBER(class UField*, Children, EMemberTypes::UStruct_Children)			// 0x0048 (0x04)
-	int32_t PropertySize;					REGISTER_MEMBER(int32_t, PropertySize, EMemberTypes::UStruct_Size)					// 0x004C (0x04)
+	int32_t PropertiesSize;					REGISTER_MEMBER(int32_t, PropertiesSize, EMemberTypes::UStruct_Size)					// 0x004C (0x04)
 	class TArray<uint8_t> Script;			// 0x0050 (0x0C)
 	int32_t TextPos;						// 0x005C (0x04)
 	int32_t Line;							// 0x0060 (0x04)

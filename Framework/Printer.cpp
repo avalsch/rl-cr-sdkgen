@@ -132,7 +132,7 @@ namespace Printer
         return str;
     }
 
-    void Header(std::ostringstream& stream, const std::string& fileName, const std::string& fileExtension, bool bPragmaPush)
+    void Header(std::ostringstream& stream, const std::string& fileName, const std::string& fileExtension)
     {
         stream << "/*\n";
         stream << "#############################################################################################\n";
@@ -162,19 +162,12 @@ namespace Printer
                 stream << "#include \"../SdkHeaders.hpp\"\n";
             }
         }
-
-        if (bPragmaPush)
-        {
-            stream << "\n#ifdef _MSC_VER\n";
-            stream << "#pragma pack(push, " + Hex(GConfig::GetFinalAlignment(), 1) + ")\n";
-            stream << "#endif\n";
-        }
     }
 
-    void Header(std::ofstream& stream, const std::string& fileName, const std::string& fileExtension, bool bPragmaPush)
+    void Header(std::ofstream& stream, const std::string& fileName, const std::string& fileExtension)
     {
         std::ostringstream sStream;
-        Header(sStream, fileName, fileExtension, bPragmaPush);
+        Header(sStream, fileName, fileExtension);
         stream << sStream.str();
     }
 
@@ -194,26 +187,19 @@ namespace Printer
         stream << sStream.str();
     }
 
-    void Footer(std::ostringstream& stream, bool bPragmaPop)
+    void Footer(std::ostringstream& stream)
     {
         stream << "/*\n";
         stream << "# ========================================================================================= #\n";
         stream << "#\n";
         stream << "# ========================================================================================= #\n";
         stream << "*/\n";
-
-        if (bPragmaPop)
-        {
-            stream << "\n#ifdef _MSC_VER\n";
-            stream << "#pragma pack(pop)\n";
-            stream << "#endif\n";
-        }
     }
 
-    void Footer(std::ofstream& stream, bool bPragmaPop)
+    void Footer(std::ofstream& stream)
     {
         std::ostringstream sStream;
-        Footer(sStream, bPragmaPop);
+        Footer(sStream);
         stream << sStream.str();
     }
 }

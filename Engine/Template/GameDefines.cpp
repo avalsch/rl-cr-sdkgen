@@ -66,6 +66,7 @@ std::string UObject::GetFullName()
 
 	for (UObject* uOuter = this->Outer; uOuter; uOuter = uOuter->Outer)
 	{
+		uOuter;
 		fullName = (uOuter->GetName() + "." + fullName);
 	}
 
